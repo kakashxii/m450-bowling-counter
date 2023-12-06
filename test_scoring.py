@@ -9,6 +9,11 @@ def calculate_frame_score(first, second, third=None):
     
     return first + second
 
+def get_perfect_game_frames():
+    frames = [[10, 0], [10, 0], [10, 0], [10, 0], [10, 0], [10, 0], [10, 0], [10, 0], [10, 0], [10, 10, 10]]
+    return frames
+
+
 class TestBowlingScoring(unittest.TestCase):
 
     def test_strike_score(self):
@@ -90,9 +95,24 @@ class TestBowlingScoring(unittest.TestCase):
 
         # Assert
         self.assertEqual(score, 10)
+    
+    def test_miss_frame_score(self):
+
+        # Arrange 
+        first_throw = 5
+        second_throw = 3
+        frame_result = "" 
+
+        # Act
+        score = calculate_frame_score(first_throw, second_throw)  
+        frame_score = "Miss!"
+
+        # Assert
+        self.assertEqual(score, 8)
+        self.assertEqual(frame_score, "Miss!")
+        
 
 
 if __name__ == '__main__':
     unittest.main()
-    
-    
+
